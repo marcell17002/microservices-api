@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       profession: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       avatar: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       role: {
         type: DataTypes.ENUM,

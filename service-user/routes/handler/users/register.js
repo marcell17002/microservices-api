@@ -32,6 +32,7 @@ module.exports = async (req, res) => {
   }
 
   const password = await bcrypt.hash(req.body.password, 10);
+
   const data = {
     password,
     name: req.body.name,
@@ -47,7 +48,8 @@ module.exports = async (req, res) => {
     status: "success",
     data: {
       id: createUser.id,
-      email,
+      name: createUser.name,
+      email: createUser.email,
     },
   });
 };

@@ -15,11 +15,11 @@ module.exports = {
       },
       profession: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       avatar: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       role: {
         type: Sequelize.ENUM,
