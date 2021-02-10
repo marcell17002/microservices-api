@@ -1,9 +1,11 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const eventHandler = require("./handler/event");
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("event");
-});
+router.post("/", eventHandler.create);
+router.get("/", eventHandler.getAll);
+router.get("/:id", eventHandler.get);
+router.put("/:id", eventHandler.update);
+router.delete("/:id", eventHandler.destroy);
 
 module.exports = router;

@@ -18,7 +18,7 @@ class CreateEvent extends Migration
             $table->string('title');
             $table->string('thumbnail')->nullable();
             $table->longText('description')->nullable();
-            $table->string('creator_id');
+            $table->integer('creator_id');
             $table->foreignId('category_id')->constrained('category')->onDelete('cascade');
             $table->timestamps();
         });

@@ -14,15 +14,21 @@ class EventController extends Controller
         $event = Event::query();
 
         $q = $request->query('q');
-        $title = $request->query('title');
+        $creator = $request->query('category');
+        $user = $request->query('creator_id');
 
         $event->when($q, function ($query) use ($q) {
             return $query->whereRaw("title LIKE '%" . strtolower($q) . "%'");
         });
 
-        $event->when($title, function ($query) use ($title) {
-            return $query->where('title', '=', $title);
+        $event->when($creator, function ($query) use ($creator) {
+            return $query->where('category_id', '=', $creator);
         });
+
+        $event->when($user, function ($query) use ($user) {
+            return $query->where('creator_id', '=', $user);
+        });
+
         return response()->json(['status' => 'success', 'data' => $event->paginate(20)]);
     }
 
@@ -61,6 +67,16 @@ class EventController extends Controller
 
         if (!$category) {
             return response()->json(['status' => 'error', 'message' => 'category not found']);
+        }
+
+        $userId = $request->input('creator_id');
+        $user = getUser($userId);
+
+        if ($user['status'] === 'error') {
+            return response()->json([
+                'status' => $user['status'],
+                'message' => $user['message']
+            ], $user['http_code']);
         }
 
         $event = Event::create($data);

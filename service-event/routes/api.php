@@ -27,6 +27,7 @@ Route::put('event/{id}', 'EventController@update');
 Route::delete('event/{id}', 'EventController@destroy');
 
 Route::get('myfavorites', 'MyFavouritesController@index');
+Route::get('myfavorites/{id}', 'MyFavouritesController@show');
 Route::post('myfavorites', 'MyFavouritesController@create');
 Route::delete('myfavorites/{id}', 'MyFavouritesController@destroy');
 //get by id

@@ -12,7 +12,7 @@ class MyFavouritesController extends Controller
 {
     public function index(Request $request)
     {
-        $myfavourites = MyFavourites::query();
+        $myfavourites = MyFavourites::query()->with('event');
 
         $userId = $request->query('user_id');
 
@@ -21,6 +21,17 @@ class MyFavouritesController extends Controller
         });
         return response()->json(['status' => 'success', 'data' => $myfavourites->paginate(20)]);
     }
+
+    public function show($id)
+    {
+        $myfavoruites = MyFavourites::find($id);
+        if (!$myfavoruites) {
+            return response()->json(['status' => 'error', 'message' => 'item not found'], 404);
+        }
+
+        return response()->json(['status' => 'success', 'data' => $myfavoruites]);
+    }
+
 
     public function create(Request $request)
     {

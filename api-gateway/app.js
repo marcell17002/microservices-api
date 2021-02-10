@@ -10,6 +10,8 @@ const mediaRouter = require("./routes/media");
 const eventRouter = require("./routes/event");
 const chatRouter = require("./routes/chat");
 const usersRouter = require("./routes/users");
+const categoryRouter = require("./routes/category");
+const myFavoritesRouter = require("./routes/myfavorites");
 const refreshTokenRouter = require("./routes/refreshToken");
 
 const verifyToken = require("./middlewares/verifyToken");
@@ -25,8 +27,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/media", mediaRouter);
-app.use("/event", verifyToken, eventRouter);
+app.use("/event", eventRouter);
 app.use("/chat", chatRouter);
+app.use("/category", categoryRouter);
+app.use("/myfavorites", verifyToken, myFavoritesRouter);
+
 app.use("/refresh-token", refreshTokenRouter);
 
 module.exports = app;
