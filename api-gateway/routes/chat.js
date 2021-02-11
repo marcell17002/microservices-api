@@ -1,9 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const chatHandler = require("./handler/chat");
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("chat");
-});
+router.post("/", chatHandler.create);
+router.get("/", chatHandler.getAll);
+router.get("/:id", chatHandler.get);
+router.get("/filtered/:id", chatHandler.getCategory);
 
 module.exports = router;
