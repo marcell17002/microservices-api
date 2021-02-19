@@ -12,6 +12,7 @@ const chatRouter = require("./routes/chat");
 const usersRouter = require("./routes/users");
 const categoryRouter = require("./routes/category");
 const myFavoritesRouter = require("./routes/myfavorites");
+const alumniRouter = require("./routes/alumni");
 const refreshTokenRouter = require("./routes/refreshToken");
 
 const verifyToken = require("./middlewares/verifyToken");
@@ -31,6 +32,7 @@ app.use("/event", eventRouter);
 app.use("/chat", chatRouter);
 app.use("/category", categoryRouter);
 app.use("/myfavorites", verifyToken, myFavoritesRouter);
+app.use("/alumni", alumniRouter);
 
 app.use("/refresh-token", refreshTokenRouter);
 
